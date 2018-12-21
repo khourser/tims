@@ -5,7 +5,11 @@ from bs4 import BeautifulSoup as bs
 import time
 # Chrome의 경우 | 아까 받은 chromedriver의 위치를 지정해준다.
 
-driver = webdriver.Chrome('/home/yunjy/development/python/chromedriver')
+#driver = webdriver.Chrome('/home/yunjy/development/python/chromedriver')
+#driver = webdriver.Chrome('./chromedriver/chromedriver_win32/chromedriver')
+driver = webdriver.chrome("")
+
+
 #options = webdriver.ChromeOptions()
 #options.add_argument('headless')
 #options.add_argument('window-size=1920x1080')
