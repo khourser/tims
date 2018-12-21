@@ -1,13 +1,17 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 
-from bs4 import BeautifulSoup as bs
+
+#from bs4 import BeautifulSoup as bs
 import time
 # Chrome의 경우 | 아까 받은 chromedriver의 위치를 지정해준다.
 
 #driver = webdriver.Chrome('/home/yunjy/development/python/chromedriver')
-#driver = webdriver.Chrome('./chromedriver/chromedriver_win32/chromedriver')
-driver = webdriver.chrome("")
+driver = webdriver.Chrome('./chromedriver/chromedriver_win32/chromedriver')
+#driver = webdriver.chrome("")
 
 
 #options = webdriver.ChromeOptions()
@@ -19,14 +23,20 @@ driver = webdriver.chrome("")
 # PhantomJS의 경우 | 아까 받은 PhantomJS의 위치를 지정해준다.
 #driver = webdriver.PhantomJS('/home/yunjy/development/python/phantomjs')
 
+#id = input("id: ")
+#pwd =input("pw: ")
 driver.implicitly_wait(3)
 driver.get('https://tims.tmax.co.kr/login.html')
-driver.find_element_by_id('userId').send_keys('')
-driver.find_element_by_name('passwd').send_keys('')
+
 tmaxData='//*[@id="form"]/table/tbody/tr/td/table/tbody/tr[2]/td[2]/table/tbody/tr[1]/td/input[2]'
 driver.find_element_by_xpath(tmaxData).click()
-driver.find_element_by_xpath('//*[@id="btnLogin"]').click()
+
+driver.find_element_by_id('userId').send_keys("")
+#driver.find_element_by_name('passwd').send_keys("")
+#driver.find_element_by_xpath('//*[@id="btnLogin"]').click()
+
 #time.sleep(1)
+element = WebDriverWait(driver,900).until(lambda driver:driver.find_element_by_id('frameTop'))
 driver.switch_to_frame(driver.find_element_by_id('frameTop'))
 
 driver.find_element_by_xpath('//*[@id="Image2"]').click()
@@ -57,7 +67,7 @@ driver.switch_to_frame('frameBody')
 #driver.find_element_by_id('retStDate').__setattr__('value','2018.09.01')
 driver.find_element_by_id('retStDate').clear()
 #driver.find_element_by_id('retStDate').send_keys('2018.09.01')
-driver.execute_script("document.getElementById('retStDate').value='2018.09.01'")
+driver.execute_script("document.getElementById('retStDate').value='2018.01.01'")
 #driver.execute_script("document.getElementById('countPerPage').value='3'")
 
 #driver.find_element_by_id('retStDate').click()
@@ -68,6 +78,7 @@ options = driver.find_elements_by_tag_name('option')
 for option in options:
     if('100' in option.text):
         p = option.find_element_by_xpath('//*[@id="tCountPerPage"]/option[4]')
+        driver.execute_script("document.getElementById('tCountPerPage').getElementsByTagName('option')[3].setAttribute('value','1000')")
         p.click()
 
 elems = driver.find_elements_by_xpath('//*[@id="form"]/table[2]')
