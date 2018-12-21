@@ -3,6 +3,10 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+import list2csv
+import csvRD
+import csvWR
+
 
 
 #from bs4 import BeautifulSoup as bs
@@ -98,6 +102,14 @@ for elem in elems:
         #list1d[:]=[]
         #del list1d[:]
         #list1d.clear()
+#list2csv.list2csv(list2d)
+csvWR.csvWR(list2d)
+
+
+
+
+
+
 print("==after loop==")
 del list2d[0]
 print(list2d)
@@ -118,6 +130,8 @@ for list in list2d:
 
 for list in list2d:
     print(list)
+
+#list2csv.list2csv(list2d)
 
 
 

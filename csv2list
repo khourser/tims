@@ -1,0 +1,19 @@
+
+import csv
+
+
+datas = list(csv.reader(open('db_.csv')))
+
+for data in datas:
+    print(data)
+
+
+"""list2d=[]
+with open('db_.csv', newline='') as csvfile:
+    reader = csv.DictReader(csvfile)
+    for row in reader:
+        print(row.items())
+        list2d.append(row.items())
+
+print(list2d)
+"""
